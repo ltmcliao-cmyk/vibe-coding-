@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>炫炮計算機 - 終極互動計算器</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title animate__animated animate__pulse animate__infinite">
+                <i class="fas fa-calculator"></i> 炫炮計算機
+            </h1>
+            <p class="subtitle">終極互動 + - * % 計算器</p>
+            <div class="mode-toggle">
+                <button id="themeToggle" class="theme-btn">
+                    <i class="fas fa-moon"></i> 切換主題
+                </button>
+                <button id="soundToggle" class="sound-btn">
+                    <i class="fas fa-volume-up"></i> 音效
+                </button>
+            </div>
+        </header>
+
+        <div class="calculator-wrapper">
+            <div class="calculator">
+                <div class="display-container">
+                    <div class="display-history" id="history"></div>
+                    <div class="display" id="display">
+                        <span class="display-text">0</span>
+                    </div>
+                    <div class="display-operator" id="operatorDisplay"></div>
+                </div>
+
+                <div class="keypad">
+                    <div class="row">
+                        <button class="btn function-btn" data-action="clear">
+                            <i class="fas fa-backspace"></i> C
+                        </button>
+                        <button class="btn function-btn" data-action="clear-entry">
+                            <i class="fas fa-undo"></i> CE
+                        </button>
+                        <button class="btn function-btn" data-action="percentage">
+                            <i class="fas fa-percentage"></i> %
+                        </button>
+                        <button class="btn operator-btn" data-operator="/">
+                            <i class="fas fa-divide"></i> ÷
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="btn number-btn" data-number="7">7</button>
+                        <button class="btn number-btn" data-number="8">8</button>
+                        <button class="btn number-btn" data-number="9">9</button>
+                        <button class="btn operator-btn" data-operator="*">
+                            <i class="fas fa-times"></i> ×
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="btn number-btn" data-number="4">4</button>
+                        <button class="btn number-btn" data-number="5">5</button>
+                        <button class="btn number-btn" data-number="6">6</button>
+                        <button class="btn operator-btn" data-operator="-">
+                            <i class="fas fa-minus"></i> -
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="btn number-btn" data-number="1">1</button>
+                        <button class="btn number-btn" data-number="2">2</button>
+                        <button class="btn number-btn" data-number="3">3</button>
+                        <button class="btn operator-btn" data-operator="+">
+                            <i class="fas fa-plus"></i> +
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="btn number-btn zero-btn" data-number="0">0</button>
+                        <button class="btn decimal-btn" data-action="decimal">
+                            <i class="fas fa-circle"></i> .
+                        </button>
+                        <button class="btn equals-btn" id="equals">
+                            <i class="fas fa-equals"></i> =
+                        </button>
+                    </div>
+                </div>
+
+                <div class="extra-features">
+                    <div class="feature-buttons">
+                        <button class="feature-btn" id="square">
+                            <i class="fas fa-superscript"></i> x²
+                        </button>
+                        <button class="feature-btn" id="sqrt">
+                            <i class="fas fa-square-root-alt"></i> √
+                        </button>
+                        <button class="feature-btn" id="toggleSign">
+                            <i class="fas fa-plus-minus"></i> ±
+                        </button>
+                        <button class="feature-btn" id="memoryAdd">
+                            <i class="fas fa-memory"></i> M+
+                        </button>
+                        <button class="feature-btn" id="memoryRecall">
+                            <i class="fas fa-redo"></i> MR
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-panel">
+                <div class="history-panel">
+                    <h3><i class="fas fa-history"></i> 計算歷史</h3>
+                    <div class="history-list" id="historyList">
+                        <!-- 歷史記錄將顯示在這裡 -->
+                    </div>
+                    <button class="clear-history-btn" id="clearHistory">
+                        <i class="fas fa-trash"></i> 清除歷史
+                    </button>
+                </div>
+                <div class="info-panel">
+                    <h3><i class="fas fa-info-circle"></i> 操作說明</h3>
+                    <ul>
+                        <li><i class="fas fa-mouse-pointer"></i> 點擊數字和運算符進行計算</li>
+                        <li><i class="fas fa-backspace"></i> C: 清除所有計算</li>
+                        <li><i class="fas fa-undo"></i> CE: 清除當前輸入</li>
+                        <li><i class="fas fa-percentage"></i> %: 百分比計算</li>
+                        <li><i class="fas fa-equals"></i> =: 執行計算</li>
+                        <li><i class="fas fa-moon"></i> 點擊右上角按鈕切換主題</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="visual-effects">
+            <div class="particles-container" id="particles"></div>
+            <div class="result-animation" id="resultAnimation"></div>
+        </div>
+
+        <footer class="footer">
+            <p>炫炮計算機 v1.0 | 支援 + - * % 運算 | <i class="fas fa-heart"></i> 互動體驗</p>
+            <p class="hint">提示：試試點擊按鈕，享受炫酷的視覺和音效！</p>
+        </footer>
+    </div>
+
+    <!-- 音效 -->
+    <audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/266/266-preview.mp3" preload="auto"></audio>
+    <audio id="equalsSound" src="https://assets.mixkit.co/active_storage/sfx/257/257-preview.mp3" preload="auto"></audio>
+    <audio id="clearSound" src="https://assets.mixkit.co/active_storage/sfx/256/256-preview.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
